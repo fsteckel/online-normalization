@@ -18,7 +18,7 @@
 #include <ATen/ATen.h>
 #include <ATen/cuda/CUDAContext.h>
 
-#include <THC/THC.h>
+//#include <THC/THC.h>
 #include <THC/THCAtomics.cuh>
 #include <THC/THCDeviceUtils.cuh>
 
@@ -181,7 +181,7 @@ std::vector<at::Tensor> norm_fwd_cuda(
         out.data<scalar_t>(),
         C, N, D, afwd, eps);
   }));
-  THCudaCheck(cudaGetLastError());
+//  THCudaCheck(cudaGetLastError());
 
   return {out, scale, s_mu, s_var};
 }
@@ -319,7 +319,7 @@ std::vector<at::Tensor> norm_bwd_cuda(
         grad_in.data<scalar_t>(),
         C, N, D, abwd);
   }));
-  THCudaCheck(cudaGetLastError());
+ // THCudaCheck(cudaGetLastError());
 
   return {grad_in, u, v};
 }
